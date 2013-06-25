@@ -1,0 +1,27 @@
+<h1>Listing userlinks</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Url</th>
+    <th>Shorturl</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @userlinks.each do |userlink| %>
+  <tr>
+    <td><%= userlink.name %></td>
+    <td><%= userlink.url %></td>
+    <td><%= userlink.shorturl %></td>
+    <td><%= link_to 'Show', userlink %></td>
+    <td><%= link_to 'Edit', edit_userlink_path(userlink) %></td>
+    <td><%= link_to 'Destroy', userlink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Userlink', new_userlink_path %>

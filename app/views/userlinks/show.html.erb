@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @userlink.name %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @userlink.url %>
+</p>
+
+<p>
+  <b>Shorturl:</b>
+  <%= @userlink.shorturl %>
+</p>
+
+
+<%= link_to 'Edit', edit_userlink_path(@userlink) %> |
+<%= link_to 'Back', userlinks_path %>
