@@ -41,6 +41,7 @@ class UserlinksController < ApplicationController
   # POST /userlinks.json
   def create
     @userlink = Userlink.new(params[:userlink])
+    @userlink.shorturl = Userlink.generate_shorturl
 
     respond_to do |format|
       if @userlink.save

@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+# This command will automatically be run when you run "rails" with Rails 3 gems installed from the root of your application.
+#
+require "mechanize"
+if ARGV.length < 2
+  puts "usage: importhn <username> <password>"
+  exit
+  
+end
+
+username,password = ARGV[0], ARGV[1]
+
+puts "#{username} #{password}"
+
+agent = Mechanize.new{|a| a.ssl_version, a.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE}
+
+page = agent.get('https://news.ycombinator.com/newslogin')
+
+page.forms[0].u = username
+page.forms[0].p = password
+
+loggedin = page.forms[0].submit
+
+if loggedin.links.select{|a| a.text == 'logout'}.length < 1
+  puts "login invalid" 
+  exit
+end
+
+savedstories = nil
+begin
+  sleep 5
+  if !savedstories.nil?
+    savedstories = savedstories.links.select{|a| a.text == 'More'}[0].click
+  else
+    savedstories = agent.get("https://news.ycombinator.com/saved?id=#{username}")
+  end
+  savedstories.links.select{|a| a.href && a.href.start_with?("http://") && !a.href.start_with?("http://ycombinator.com")}.each do |x|
+    puts "#{x.text}: #{x.href}"
+    ul = Userlink.new(name: x.text, url: x.href)
+    ul.shorturl = Userlink.generate_shorturl
+    ul.save
+  end
+  puts "-------------"
+
+end while savedstories.links.select{|a| a.text == 'More'}.length > 0

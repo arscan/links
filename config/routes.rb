@@ -1,6 +1,8 @@
 Links::Application.routes.draw do
   resources :userlinks
 
+  root :to => 'userlinks#index'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
