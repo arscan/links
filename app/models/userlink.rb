@@ -13,7 +13,9 @@ class UrlValidator < ActiveModel::EachValidator
 end
 
 class Userlink < ActiveRecord::Base
-  attr_accessible :name, :url
+  attr_accessible :name, :url, :summary, :tag_list
+
+  acts_as_taggable
 
   validates :name, :url, presence: true
   validates :url, url: true

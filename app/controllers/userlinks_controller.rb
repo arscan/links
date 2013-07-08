@@ -2,7 +2,12 @@ class UserlinksController < ApplicationController
   # GET /userlinks
   # GET /userlinks.json
   def index
-    @userlinks = Userlink.all
+    if params[:tag]
+      @userlinks = Userlink.tagged_with(params[:tag])
+    else
+      @userlinks = Userlink.all
+    end
+    @userlink = Userlink.new
 
     respond_to do |format|
       format.html # index.html.erb

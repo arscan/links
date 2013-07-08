@@ -1,6 +1,8 @@
 Links::Application.routes.draw do
   resources :userlinks
 
+  get 'tags/:tag', to: 'userlinks#index', as: :tag
+
   root :to => 'userlinks#index'
 
 
