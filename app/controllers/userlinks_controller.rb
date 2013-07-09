@@ -1,4 +1,10 @@
 class UserlinksController < ApplicationController
+  # GET /:id
+  def follow
+    @userlink = Userlink.find_by_shorturl params[:shorturl]
+    redirect_to @userlink.url
+    
+  end
   # GET /userlinks
   # GET /userlinks.json
   def index

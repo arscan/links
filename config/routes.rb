@@ -5,6 +5,8 @@ Links::Application.routes.draw do
 
   root :to => 'userlinks#index'
 
+  get ':shorturl', to: 'userlinks#follow', as: :shorturl
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
