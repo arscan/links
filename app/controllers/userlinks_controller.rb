@@ -9,9 +9,9 @@ class UserlinksController < ApplicationController
   # GET /userlinks.json
   def index
     if params[:tag]
-      @userlinks = Userlink.tagged_with(params[:tag])
+      @userlinks = Userlink.order("created_at desc").tagged_with(params[:tag])
     else
-      @userlinks = Userlink.all
+      @userlinks = Userlink.order("created_at desc").all
     end
     @userlink = Userlink.new
 
