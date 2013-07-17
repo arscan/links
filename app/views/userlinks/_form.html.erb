@@ -1,4 +1,5 @@
-<%= form_for(@userlink) do |f| %>
+<%= form_for(@userlink, html: {:class => "well"}) do |f| %>
+  <fieldset>
   <% if @userlink.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@userlink.errors.count, "error") %> prohibited this userlink from being saved:</h2>
@@ -12,22 +13,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :url %><br />
+    <%= f.label :url %>
     <%= f.text_field :url %>
   </div>
   <div class="field">
-    <%= f.label :summary %><br />
+    <%= f.label :summary %>
     <%= f.text_area :summary %>
   </div>
   <div class="field">
-    <%= f.label :tag_list %><br />
+    <%= f.label :tag_list %>
     <%= f.text_field :tag_list %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
+  </fieldset>
 <% end %>
