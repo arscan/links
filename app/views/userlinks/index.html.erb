@@ -1,19 +1,32 @@
-<h1>Listing userlinks</h1>
-
-<%= render 'form' %>
+<br />
+<%= form_for :userlink, html: {:class => "well"} do |f| %>
+        <div class="controls controls-row">
+            <div class="span10">
+                <%= f.text_field :url, placeholder: "http://", class: "input-block-level"  %>
+            </div>
+            <div class="span1">
+                <%= f.submit%>
+            </div>
+        </div>
+        <div style="display:none">
+            <%= f.text_field :name, value: "Loading" =%>
+            <%= f.text_area :summary %>
+            <%= f.text_field :tag_list %>
+        </div>
+<% end %>
 
 <table>
 
-<% @userlinks.each do |userlink| %>
-  <tr>
-    <td><%= userlink.shorturl %></td>
-    <td><%= link_to userlink.name, userlink.url %> <%= raw userlink.tag_list.map {|t| link_to t, tag_path(t) }.join(',') %></td>
-    <td><%= userlink.summary %></td>
-    <td><%= link_to 'Show', userlink %></td>
-    <td><%= link_to 'Edit', edit_userlink_path(userlink) %></td>
-    <td><%= link_to 'Destroy', userlink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+    <% @userlinks.each do |userlink| %>
+        <tr>
+            <td><%= userlink.shorturl %></td>
+            <td><%= link_to userlink.name, userlink.url %> <%= raw userlink.tag_list.map {|t| link_to t, tag_path(t) }.join(',') %></td>
+            <td><%= userlink.summary %></td>
+            <td><%= link_to 'Show', userlink %></td>
+            <td><%= link_to 'Edit', edit_userlink_path(userlink) %></td>
+            <td><%= link_to 'Destroy', userlink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
 </table>
 
 <br />
