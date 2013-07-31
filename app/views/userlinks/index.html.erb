@@ -1,14 +1,12 @@
 <br />
 <%= form_for :userlink, html: {:class => "well"} do |f| %>
-        <div class="controls controls-row">
-                <%= f.text_field :url, placeholder: "http://", class: "span9"  %>
-                <%= f.submit class: "btn span2", value: "Save"%>
-        </div>
-        <div style="display:none">
-            <%= f.text_field :name, value: "Loading" =%>
-            <%= f.text_area :summary %>
-            <%= f.text_field :tag_list %>
-        </div>
+            <%= f.text_field :url, placeholder: "http://", class: "input-block-level"  %>
+            <div class="starthidden">
+                <%= f.text_field :name, value: "Loading", class: "input-block-level"%>
+                <%= f.text_area :summary, placeholder: "Summary", class: "input-block-level", rows: "5" %>
+                <%= f.text_field :tag_list, placeholder: "tags", class: "input-block-level"%>
+                <%= f.submit class: "btn", value: "Save"%>
+            </div>
 <% end %>
 <% @userlinks.each do |userlink| %>
     
