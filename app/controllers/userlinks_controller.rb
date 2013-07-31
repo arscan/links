@@ -56,7 +56,7 @@ class UserlinksController < ApplicationController
 
     respond_to do |format|
       if @userlink.save
-        format.html { redirect_to @userlink, notice: 'Userlink was successfully created.' }
+        format.html { redirect_to "/", notice: 'Userlink was successfully created.' }
         format.json { render json: @userlink, status: :created, location: @userlink }
       else
         format.html { render action: "new" }
