@@ -13,24 +13,30 @@
 
 
 <% end %>
-
-<table width=100%>
-
-
+<div>
     <% @userlinks.each do |userlink| %>
-        <tr>
-            <td><%= userlink.shorturl %></td>
-            <td><%= link_to userlink.name, userlink.url %> <%= raw userlink.tag_list.map {|t| link_to t, tag_path(t) }.join(',') %></td>
-            <td><%= userlink.summary %></td>
-            <td><%= link_to 'Show', userlink %></td>
-            <td><%= link_to 'Edit', edit_userlink_path(userlink) %></td>
-            <td><%= link_to 'Destroy', userlink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
+        <div>
+            <div>
+                <%= link_to userlink.name, userlink.url %> 
+                (domain.com)
+            </div>
+            <div>
+                <ul class="inline">
+                    <li><%= userlink.shorturl %></li>
+                    <li>
+                    <%= raw userlink.tag_list.map {|t| link_to t, tag_path(t) }.join(',') %>
+                    </li>
+                    <!--
+                <td><%= link_to 'Show', userlink %></td>
+                <td><%= link_to 'Edit', edit_userlink_path(userlink) %></td>
+                <td><%= link_to 'Destroy', userlink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                -->
+            </ul>
+        </div>
+    </div>
+
     <% end %>
-</table>
-
-<%= will_paginate @userlinks %>
-
-<br />
-
-<%= link_to 'New Userlink', new_userlink_path %>
+</div>
+<div class="text-center">
+    <%= will_paginate @userlinks, renderer: BootstrapPagination::Rails %>
+</div>
