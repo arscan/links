@@ -17,14 +17,16 @@
     <% @userlinks.each do |userlink| %>
         <div>
             <div>
-                <%= link_to userlink.name, userlink.url %> 
-                (domain.com)
+                <%= link_to userlink.name, "/" + userlink.shorturl, class: "mainlinks" %> 
+                <% userlink.tag_list.each do |tag|%>
+                    <a class="label" href="?tag=<%=tag%>"><%=tag%></a>
+                <% end %>
             </div>
             <div>
-                <ul class="inline">
-                    <li><%= userlink.shorturl %></li>
+                <ul class="inline muted" style="margin-left:-5px">
+                    <li><%= userlink.created_at.to_date.to_formatted_s(:long)    %></li>
+                    <li><%= geturl(userlink.url) %></li>
                     <li>
-                    <%= raw userlink.tag_list.map {|t| link_to t, tag_path(t) }.join(',') %>
                     </li>
                     <!--
                 <td><%= link_to 'Show', userlink %></td>
@@ -40,3 +42,8 @@
 <div class="text-center">
     <%= will_paginate @userlinks, renderer: BootstrapPagination::Rails %>
 </div>
+<!-- load up the spinner from the title-fetch site-->
+<!-- this just warms up the title-fetch app because heroku puts it to sleep --> 
+<div class="hidden">
+    <img src="http://title-fetch.robscanlon.com/spinner.gif">
+</div> 
