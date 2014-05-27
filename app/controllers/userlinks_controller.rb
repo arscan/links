@@ -17,7 +17,7 @@ class UserlinksController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @userlinks }
+      format.json { render json: Userlink.order("created_at desc").to_json(include: :tags) }
     end
   end
 
