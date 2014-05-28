@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :set_headers 
-  protect_from_forgery
+  # protect_from_forgery
 
 
   def options

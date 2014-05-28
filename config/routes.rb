@@ -7,6 +7,8 @@ Links::Application.routes.draw do
 
   get ':shorturl', to: 'userlinks#follow', as: :shorturl
 
+  match 'userlinks', :controller => 'userlinks', :action => 'options', :constraints => {:method => 'OPTIONS'}
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
